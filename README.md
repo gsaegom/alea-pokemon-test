@@ -1,22 +1,11 @@
-Welcome to Alea Knowledge Test!
+# Alea Knowledge Test
 
-Below we indicate the instructions that must be followed to complete the knowledge test.
-
-In Alea, we are gaming fanatics and we want to expose an API with the following scenarios:
+For this assignment, an application has created to expose an API with the following scenarios:
 
 1. The 5 heaviest Pokémons.
-2. The 5 highest Pokémons.
-3. The 5 Pokémons with more base experience.
+2. The 5 tallest Pokémons.
+3. The 5 Pokémons with the highest base experience.
 
-The source of the data is the PokéAPI (https://pokeapi.co/api/v2/).
+In order to do so, a Spring RESTful application has been created. This application consists of a model layer, with three classes: PokeApiUrl, containing a list of PokeApiResult, which contains the name and the url of a single result, and PokemonDetail, which contains the relevant details of a Pokémon for our application. It also contains an Enum, PokeApiUrlEnum, for the different types of results that can be fetched from the API (berries, Pokémon, generations...) This is to ensure a valid URL is used.
 
-Must have:
-- Create a Java/SpringBoot application
-- Test coverage of at least 90%
-Nice to have:
-- Integration test
-- Production ready
-
-Use a readme file to explain to us all decisions that you made, and all improvements that you would like to do , and you didn't have enough time to implement.
-
-SpringBoot application with Maven. Libraries installed: Lombok and Spring Web.
+Similarly, the application has a service layer, with Service classes for all the entities. PokeApiUrlService contains two methods to retrieve the results from a PokeApiUrlEnum. Through method overloading, one can choose whether to retrieve all the results or a specific number.
