@@ -34,6 +34,7 @@ public class PokemonControllerIT {
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
+                // As new games are released, the list of Pokémon increases, hence the greaterThanOrEqualTo()
                 .andExpect(jsonPath("$", hasSize(greaterThanOrEqualTo(1281))))
                 .andExpect(jsonPath("$[0].name", is("bulbasaur")))
                 .andExpect(jsonPath("$[0].height", is(7)))
@@ -67,12 +68,11 @@ public class PokemonControllerIT {
 
     @Test
     public void givenPokemonDetails_whenGetTwoHeaviestPokemon_thenStatus200() throws Exception {
-// As new games are released, the list of Pokémon increases, hence the greaterThanOrEqualTo()
         mvc.perform(get("/pokemon/heaviest/2").contentType(MediaType.APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
-                .andExpect(jsonPath("$", hasSize(greaterThanOrEqualTo(2))))
+                .andExpect(jsonPath("$", hasSize(equalTo(2))))
                 .andExpect(jsonPath("$[0].name", is("cosmoem")))
                 .andExpect(jsonPath("$[0].height", is(1)))
                 .andExpect(jsonPath("$[0].weight", is(9999)))
