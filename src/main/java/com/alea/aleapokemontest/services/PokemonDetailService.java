@@ -37,17 +37,15 @@ public class PokemonDetailService {
 
     }
 
-
-
     public List<PokemonDetails> getHeaviestPokemon(int numberOfPokemon) {
         return getAllPokemonDetails().parallelStream()
+                .filter(pokemonDetails -> pokemonDetails.weight() < 10000)
                 .sorted(Comparator.comparing(PokemonDetails::weight).reversed())
                 // According to the PokeAPI, Gigantamax Pokémon weigh 1000 kg (weight is measured in hectograms)
                 // by default. In the games, however, Gigantamax forms have a weight of "???", suggesting their weights
                 // are immeasurable. In addition, moves affected by weight don't affect them.
                 // Therefore, they have been excluded from this query.
                 // Source: https://bulbapedia.bulbagarden.net/wiki/Gigantamax
-                .filter(pokemonDetails -> pokemonDetails.weight() < 10000)
                 .limit(numberOfPokemon)
                 .collect(Collectors.toList());
     }
