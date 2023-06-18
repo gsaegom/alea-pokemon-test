@@ -20,7 +20,7 @@ public class PokemonDetailService {
     }
 
     public PokemonDetails getPokemonDetails(PokeApiResult pokeApiResult) {
-        if (!pokeApiResult.url().startsWith(PokeApiUrlEnum.POKEMON.name())) {
+        if (!pokeApiResult.url().startsWith(PokeApiUrlEnum.POKEMON.getUrl())) {
             throw new IllegalArgumentException("PokeApiResult must be a Pokemon");
         }
         RestTemplate template = new RestTemplate();

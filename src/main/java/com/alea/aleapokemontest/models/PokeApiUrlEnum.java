@@ -12,5 +12,7 @@ public enum PokeApiUrlEnum {
         return this.url + "?limit=" + limit;
     }
 
-
+    public String getUrl() {
+        return url;
+    }
 }
